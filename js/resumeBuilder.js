@@ -67,38 +67,35 @@ education.display
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var work = {
-   "jobs": {
-             "one" : {
-               "employer": "string",
-               "title": "string" ,
-               "location": "string", 
-               "dates": "string",
-               "description": "string", 
+   "jobs": [
+             {
+               "employer": "One Boss",
+               "title": "One Title" ,
+               "location": "One Location", 
+               "dates": "One Dates",
+               "description": "One Description", 
              },     
-             "two": {
-               "employer": "string",
-               "title": "string" ,
-               "location": "string", 
-               "dates": "string",
-               "description": "string", 
+             {
+               "employer": "Two Boss",
+               "title": "Two Title" ,
+               "location": "Two Location", 
+               "dates": "Two Dates",
+               "description": "Two Description", 
              },
-   },
-
-  "display": function(i){
-    var formattedWorkStart = HTMLworkStart;
-    var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-    var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-    var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-    var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-    var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
-    $(".work-entry:last").append(formattedWorkStart, formattedEmployer, formattedTitle, formattedLocation, formattedDates, formattedDescription);
-
-    $("#main").append(work["jobs"]).append(work.title);
-
-
-    work.jobs.forEach(work.display);
+   ],
+  "display": function(){
+      $("#main").append(HTMLworkStart)
+      work.jobs.forEach(function(job){
+        var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+        var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+        var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+        var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+        var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+        $(".work-entry:last").append(formattedEmployer, formattedTitle, formattedLocation, formattedDates, formattedDescription);
+      })
   }
 }
+work.display
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var projects = {
@@ -107,18 +104,22 @@ var projects = {
             "title": "Game", 
             "dates": "2016", //(works with a hyphen between them)
             "description": "tank game",
-            "images": {//array with string urls
-
-            },
+            "images" : {//array with string urls
+                "one" : "images/projects/Game/game1.jpg",
+                "two" : "images/projects/Game/game2.jpg",
+                "three" : "images/projects/Game/game3.jpg"
+            }
           },
           {
             "title": "Maps", 
             "dates": "2016", //(works with a hyphen between them)
             "description": "map locator",
             "images": {//array with string urls
-
-            },
-          },
+                "one" : "images/projects/Maps/maps1.jpg",
+                "two" : "images/projects/Maps/maps2.jpg",
+                "three" : "images/projects/Maps/maps3.jpg"
+            }
+          }
       ],
       "display": function(){
           $("#projects").append(HTMLprojectStart);
@@ -129,12 +130,11 @@ var projects = {
               projects.images.forEach(function(img) {
                   var formattedProjectImage = HTMLprojectImage.replace("%data%", project[prj].img)
                   $('#projects').append(formattedProjectImage);
-              }
-              )
-          }
-          )
+              })
+          })
       }
 }
+projects.display
 
 /*
 All of your code for adding elements to the 
