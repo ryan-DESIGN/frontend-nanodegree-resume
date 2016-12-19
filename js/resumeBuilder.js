@@ -38,10 +38,10 @@ var bio = {
           $('#header').append(formattedSkill)
         })
         //Displaying picture
-        var formattedBioPic = HTMLbioPic.replace("%data%", contactInfo.bioPic);
+        var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
   }
 }
-bio.display
+bio.display()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var education = {
@@ -63,39 +63,39 @@ var education = {
     $('#')
   }
 }
-education.display
+education.display()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var work = {
-   "jobs": [
-             {
+   "jobs": {
+             "one" : {
                "employer": "One Boss",
                "title": "One Title" ,
                "location": "One Location", 
                "dates": "One Dates",
-               "description": "One Description", 
+               "description": "One Description"
              },     
-             {
+             "two" : {
                "employer": "Two Boss",
                "title": "Two Title" ,
                "location": "Two Location", 
                "dates": "Two Dates",
-               "description": "Two Description", 
+               "description": "Two Description"
              },
-   ],
+   },
   "display": function(){
       $("#main").append(HTMLworkStart)
-      work.jobs.forEach(function(job){
-        var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-        var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-        var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-        var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-        var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+      work.jobs.forEach(function(aJob){
+        var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[aJob].employer);
+        var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[aJob].title);
+        var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[aJob].location);
+        var formattedDates = HTMLworkDates.replace("%data%", work.jobs[aJob].dates);
+        var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[aJob].description);
         $(".work-entry:last").append(formattedEmployer, formattedTitle, formattedLocation, formattedDates, formattedDescription);
       })
   }
 }
-work.display
+work.display()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var projects = {
@@ -134,7 +134,7 @@ var projects = {
           })
       }
 }
-projects.display
+projects.display()
 
 /*
 All of your code for adding elements to the 
