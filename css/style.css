@@ -171,6 +171,14 @@ span {
   padding: 5px;
 }
 
+button {
+  color: red;
+  font-weight: bold;
+  font-family: courier;
+  background-color: black;
+  box-shadow: 0 0 5px red;
+}
+
 #lets-connect {
   text-align: center;
 }
