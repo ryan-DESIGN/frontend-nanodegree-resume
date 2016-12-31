@@ -6,12 +6,12 @@ var bio = {
         "email": "xx@xx.mail", 
         "github": "@xxxxx",
         "twitter": "@xxxxxx",
-        "blog": "http://",
+        "blog": "http://blogger.com",
         "location": "Nuuk, Greenland"
   },
   "welcomeMessage": "Thanks for checking out my resume.", 
   "skills" : ["writing", "coding", "painting"],
-  "biopic": "/images/fry.jpg",
+  "bioPic": "images/fry.jpg",
   "display": function(){
         //Displaying name
         var formattedName = HTMLheaderName.replace('%data%', bio.name)
@@ -24,18 +24,18 @@ var bio = {
         var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter)
         var formattedBlog = HTMLblog.replace("%data%", bio.contacts.blog)
         var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location)
-        $('#topContacts').append(formattedMobile, formattedEmail, formattedGithub, formattedTwitter, formattedBlog, formattedLocation)
+        $('#topContacts:last').append(formattedMobile, formattedEmail, formattedGithub, formattedTwitter, formattedBlog, formattedLocation)
         //Displaying Welcome Message
         var formattedWelcomeMessage = HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage)
         //Displaying Skills section
-        $('#header').append(HTMLskillsStart)
+        $('#header:last').append(HTMLskillsStart)
         bio.skills.forEach(function(skillItem){
           var formattedSkill = HTMLskills.replace('%data%', skillItem)
-          $('#header').append(formattedSkill)
+          $('#header:last').append(formattedSkill)
         })
         //Displaying picture
         var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic)
-        $('#header').append(formattedBioPic, formattedName, formattedRole, internationalizeButton, formattedWelcomeMessage)
+        $('#header:last').append(formattedBioPic, formattedRole, formattedName, internationalizeButton, formattedWelcomeMessage)
         //I assume there's a desire to bunch all these into a single append() call on jQuery to improve
          //load time. That would make it necessary to somehow Order the site as CSS flex boxes that could be
          //rearranged to fit a design despite being loaded out of order.
@@ -50,19 +50,19 @@ var education = {
     "schools" : [
                          {
                            "name" : "College",
-                           "location" : "Mordor, Middle Earth",
+                           "location" : "Mordor, WA",
                            "degree" : "Associate's",
-                           "majors": ["just ", "Computer Information Systems", ", only one"],
+                           "majors": ["just ", "Computer Information Systems", "only one"],
                            "dates": "2010-2012",
-                           "url": "#"
+                           "url": "http://blank.nowhere"
                          },
                          {  
-                            "name" : "none",
-                            "location" : "Lisbao, Portugal",
-                            "degree" : "none",
-                            "majors": ["not", "Computer Information Systems", ", again just this one"],
+                            "name" : "University",
+                            "location" : "London, but not England",
+                            "degree" : "not quite a Bachelor's",
+                            "majors": ["Drawing Things", "Just that one"],
                             "dates": "not 2010-2012",
-                            "url": "not this#"
+                            "url": "http://blank.nohow"
                          }
     ],
     "onlineCourses": [
@@ -82,26 +82,28 @@ var education = {
   "display": function(){
       $('#education').append(HTMLschoolStart)
       education.schools.forEach(function(school){
-          var formattedSchoolName = HTMLschoolName.replace("%data%", school.name)
-          var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", school.location)
-          var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree)
-          $('#education').append(formattedSchoolName, formattedSchoolLocation, formattedSchoolDegree)
-          school.majors.forEach(function(i){
-              var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", school.majors[i])
-              $('#education').append(formattedSchoolMajor)
-          })
-          var formattedSchoolDates = HTMLschoolDates.replace("%data%", school.dates)
-          var formattedSchoolURL = HTMLschoolURL.replace("%data%", school.url)
-          $('#education').append(formattedSchoolDates, formattedSchoolURL)
+            $('.education-entry:last').append('<hr style="border-color:lime">')
+            var formattedSchoolName = HTMLschoolName.replace("%data%", school.name)
+            var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", school.location)
+            var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree)
+            $('.education-entry:last').append(formattedSchoolName, formattedSchoolLocation, formattedSchoolDegree)
+            school.majors.forEach(function(major){
+                  var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", major)
+                  $('.education-entry:last').append(formattedSchoolMajor)
+            })
+            var formattedSchoolDates = HTMLschoolDates.replace("%data%", school.dates)
+            var formattedSchoolURL = HTMLschoolURL.replace("%data%", school.url)
+            $('.education-entry:last').append(formattedSchoolDates, formattedSchoolURL)
       })
       $('#education').append(HTMLonlineClasses)
       education.onlineCourses.forEach(function(course){
-        var formattedOnlineTitle = HTMLonlineTitle.replace('%data%', course.title)
-        var formattedOnlineSchool = HTMLonlineSchool.replace('%data%', course.school)
-        var formattedOnlineDates = HTMLonlineDates.replace('%data%', course.dates)
-        var formattedOnlineURL = HTMLonlineURL.replace('%data%', course.url)
-        $('#education').append(formattedOnlineTitle, formattedOnlineSchool, formattedOnlineDates, formattedOnlineURL)
-      })
+            $('.education-entry:last').append('<hr style="border-color:yellow">')
+            var formattedOnlineTitle = HTMLonlineTitle.replace('%data%', course.title)
+            var formattedOnlineSchool = HTMLonlineSchool.replace('%data%', course.school)
+            var formattedOnlineDates = HTMLonlineDates.replace('%data%', course.dates)
+            var formattedOnlineURL = HTMLonlineURL.replace('%data%', course.url)
+            $('.education-entry:last').append(formattedOnlineTitle, formattedOnlineSchool, formattedOnlineDates, formattedOnlineURL)
+      })  
   }
 }
 education.display()
@@ -111,30 +113,30 @@ education.display()
 var work = {
        "jobs": [
              {
-               "employer": "One Boss",
-               "title": "One Title" ,
+               "employer": "First Boss",
+               "title": "First Title" ,
                "location": "North Pacific Ocean", 
-               "dates": "One Dates",
-               "description": "One Description"
+               "dates": "First Dates",
+               "description": "First Description"
              },     
              {
-               "employer": "Two Boss",
-               "title": "Two Title" ,
+               "employer": "Second Boss",
+               "title": "Second Title" ,
                "location": "Gulf of Mexico", 
-               "dates": "Two Dates",
-               "description": "Two Description"
-             },
+               "dates": "Second Dates",
+               "description": "Second Description"
+             }
        ],
       "display": function(){
-              $("#main").append(HTMLworkStart)
-              work.jobs.forEach(function(job){
+           work.jobs.forEach(function(job){    
+                $("#workExperience").append(HTMLworkStart)
                 var formattedEmployer = HTMLworkEmployer.replace("%data%", job.employer)
                 var formattedTitle = HTMLworkTitle.replace("%data%", job.title)
                 var formattedLocation = HTMLworkLocation.replace("%data%", job.location)
                 var formattedDates = HTMLworkDates.replace("%data%", job.dates)
                 var formattedDescription = HTMLworkDescription.replace("%data%", job.description)
                 $(".work-entry:last").append(formattedEmployer, formattedTitle, formattedLocation, formattedDates, formattedDescription)
-              })
+            })
       }
 }
 work.display()
@@ -201,13 +203,13 @@ $(document).click(function(loc){
 $('#mapDiv').append(googleMap)
 
 
-var key = GOOGLEMAPS
 
-// (function(){
+////////////////TRYING TO GET A JSON HIDDEN GOOGLE MAPS API KEY TO WORK/////////////////////////////////////////////////////////////////
+// var fun = function(){
 //   var json = null
 //   $.ajax({
-//     'async' : false,
-//     'global' : false,
+//     'async' : true,
+//     'global' : true,
 //     'url' : "text.json",
 //     'dataType' : "json",
 //     'success' : function(data){
@@ -215,9 +217,19 @@ var key = GOOGLEMAPS
 //     }
 //   })
 //   return json
-// })()
-keyedGoogleMapsWithKeySpot = HTMLgoogleMapsWithKeySpot.replace('%data%', key)
-$('head').append(keyedGoogleMapsWithKeySpot)
+// }
+
+
+
+// // var apiKey = data.GOOGLEMAPS
+//  var apiKey=JSON.parse(fun()).GOOGLEMAPS
+//  for(var i in apiKey){
+//   console.log(apiKey[i])
+// }
+
+
+// keyedGoogleMapsWithKeySpot = HTMLgoogleMapsWithKeySpot.replace('%data%', apiKey)
+// $('head').append(keyedGoogleMapsWithKeySpot)
 
 
 
@@ -249,3 +261,10 @@ var inName = function(name){
 }
 
 
+/////////////////////////CSS STYLING////////////////////////////////////////////////////////////////////////
+$('div').css('background-color', '#331111')
+$('h1').css('background-color', 'red').css('opacity', '.6')
+$('h2').css('background-color', 'red').css('opacity', '.5')
+$('h3').css('background-color', 'red').css('opacity', '.3')
+$('*').css('font-family', 'Reem+Kufi').css('color', 'white').css('box-shadow','inset 0 0 5px red')
+$('img').css('margin',"0 auto")
