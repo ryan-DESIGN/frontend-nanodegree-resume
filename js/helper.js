@@ -45,7 +45,7 @@ var HTMLonlineURL = '<br><a href="#">%data%</a>';
 var internationalizeButton = '<button>Inter NATIONALIZE</button>';
 var googleMap = '<div id="map"></div>';
 
-var HTMLgoogleMapsWithKeySpot = '<script async defer src="https://maps.googleapis.com/maps/api/js?key=%data%&libraries=places" type="text/javascript"></script>'
+var HTMLgoogleMapsWithKeySpot = '<script async defer src="https://maps.googleapis.com/maps/api/js?key=%data%&libraries=places" type="text/javascript"></script>';
 
 
 /*
@@ -75,7 +75,7 @@ function logClicks(x,y) {
 }
 
 $(document).click(function(loc) {
-  console.log(loc)
+  console.log(loc);
 });
 
 
