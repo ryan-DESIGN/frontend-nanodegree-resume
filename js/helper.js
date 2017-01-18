@@ -34,7 +34,7 @@ var HTMLschoolLocation = '<div class="location-text">%data%</div>';
 var HTMLschoolDegree = ' -- %data%</a>';
 var HTMLschoolMajor = '<em><br>Major: %data%</em>';
 var HTMLschoolDates = '<br><div class="date-text">%data%</div>';
-var HTMLschoolURL = '<br><a href="%data%">School Site</a>';
+var HTMLschoolURL = '<br><a href="#">%data%</a>';
 
 var HTMLonlineClasses = '<div class="education-entry"><h3>Online Course</h3></div>';
 var HTMLonlineTitle = '<a href="#">%data%';
@@ -42,7 +42,7 @@ var HTMLonlineSchool = ' - %data%</a>';
 var HTMLonlineDates = '<div class="date-text">%data%</div>';
 var HTMLonlineURL = '<br><a href="#">%data%</a>';
 
-var internationalizeButton = '<button>Inter NATIONALIZE</button>';
+// var internationalizeButton = '<button>Inter NATIONALIZE</button>';
 var googleMap = '<div id="map"></div>';
 
 var HTMLgoogleMapsWithKeySpot = '<script async defer src="https://maps.googleapis.com/maps/api/js?key=%data%&libraries=places" type="text/javascript"></script>';

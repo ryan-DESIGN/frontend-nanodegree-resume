@@ -14,7 +14,7 @@ var bio = {
         "coding",
         "painting"
     ],
-    "bioPic": "images/fry.jpg",
+    "biopic": "images/fry.jpg",
     "display": function() { //Displaying name
         var formattedName = HTMLheaderName.replace('%data%', bio.name); //Displaying role
         var formattedRole = HTMLheaderRole.replace('%data%', bio.role); //Displaying contact details
@@ -24,21 +24,20 @@ var bio = {
         var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
         var formattedBlog = HTMLblog.replace("%data%", bio.contacts.blog);
         var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-        $('#topContacts:last').append(formattedMobile, formattedEmail, formattedGithub, formattedTwitter, formattedBlog, formattedLocation); //Displaying Welcome Message
+        $('#topContacts, #footerContacts').append(formattedMobile, formattedEmail, formattedGithub, formattedTwitter, formattedBlog, formattedLocation); //Displaying Welcome Message
         var formattedWelcomeMessage = HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage); //Displaying Skills section
-        $('#header:last').append(HTMLskillsStart);
+        $('#header').append(HTMLskillsStart);
         bio.skills.forEach(function(skillItem) {
             var formattedSkill = HTMLskills.replace('%data%', skillItem);
-            $('#header:last').append(formattedSkill);
+            $('#header').append(formattedSkill);
         }); //Displaying picture
-        var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
-        $('#header:last').append(formattedBioPic, formattedRole, formattedName, internationalizeButton,
-            formattedWelcomeMessage); //I assume there's a desire to bunch all these into a single append() call on jQuery to improve
+        var formattedBioPic = HTMLbioPic.replace("%data%", bio.biopic);
+        $('#header').append(formattedBioPic, formattedRole, formattedName, formattedWelcomeMessage); 
+        //I assume there's a desire to bunch all these into a single append() call on jQuery to improve
         //load time. That would make it necessary to somehow Order the site as CSS flex boxes that could be
         //rearranged to fit a design despite being loaded out of order.
     }
 };
-bio.display();
 var education = {
     "schools": [{
             "name": "College",
@@ -88,7 +87,7 @@ var education = {
                 $('.education-entry:last').append(formattedSchoolMajor);
             });
             var formattedSchoolDates = HTMLschoolDates.replace("%data%", school.dates);
-            var formattedSchoolURL = HTMLschoolURL.replace("%data%", school.url);
+            var formattedSchoolURL = HTMLschoolURL.replace("%data%", school.url).replace("#", school.url);
             $('.education-entry:last').append(formattedSchoolDates, formattedSchoolURL);
         });
         $('#education').append(HTMLonlineClasses);
@@ -103,7 +102,6 @@ var education = {
         });
     }
 };
-education.display();
 var work = {
     "jobs": [{
             "employer": "First Boss",
@@ -133,7 +131,6 @@ var work = {
         });
     }
 };
-work.display();
 var projects = {
     "projects": [ //Array OF Objects
         { //FIRST Object IN THE Array
@@ -174,7 +171,6 @@ var projects = {
         }
     }
 };
-projects.display();
 
 /////////////CLICK METRICS/////////////////////////////////////////////////////////////////////////////
 $(document).click(function(loc) {
@@ -188,6 +184,7 @@ $('#mapDiv').append(googleMap);
 
 //////////////INTERNATIONALIZING NAME - BUTTON/////////////////////////////////////////////////////////////
 var inName = function(name) {
+    var internationalized = "";
     if (typeof "name" === "string") {
         var holder = name.split(" ");
         console.log(holder[0], holder[1]); //Ryan Last
@@ -202,7 +199,7 @@ var inName = function(name) {
                 holder[i] = holder[i].toUpperCase();
                 console.log(holder[i]); //LAST
             }
-            var internationalized = holder.join(" ");
+            internationalized = holder.join(" ");
             console.log(holder);
         } else {
             console.log("Please enter a string with a last name!");
@@ -212,6 +209,12 @@ var inName = function(name) {
     }
     return internationalized;
 }; 
+
+/////////////////////////FUNCTION CALLS/////////////////////////////////////////////////////////////////////
+bio.display();
+education.display();
+work.display();
+projects.display();
 
 /////////////////////////CSS STYLING////////////////////////////////////////////////////////////////////////
 $('div').css('background-color', '#331111');
